@@ -14,7 +14,7 @@ monthlyparttimewage=0
 persontype=$(( 1+$RANDOM%2 ))
 echo $persontype
 noofdays=20
-
+x=1
 
 while [ true ]
 do
@@ -31,10 +31,14 @@ then
 	      if [ $persontype -eq 1 ]
 	         then
 	         dailywage=$(($wageperhour*$fulldayhour*$randomcheck))
+		 arr[$x]=$dailywage
+		  let x++
 	         monthlyfulltimewage=$(( $monthlyfulltimewage + $dailywage ))
 	         let totalhours+=8
 	      else
                  parttimewage=$(($wageperhour*$parttimehour*$randomcheck))
+		 arr[$x]=$parttimewage
+		  let x++
 		 monthlyparttimewage=$(( $monthlyparttimewage + $parttimewage ))
 	         let totalhours+=4
 	      fi
@@ -63,6 +67,7 @@ function getworkhours(){
 workhours=(`getworkhours`)
 
 echo "Total Work Hours : $workhours"
-
+echo "Hours : ${arr[@]}"
 echo "Monthly Fulltime wage : $monthlyfulltimewage "
 echo "Monthly Parttime wage : $monthlyparttimewage "
+
