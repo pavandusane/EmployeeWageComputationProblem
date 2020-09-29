@@ -1,18 +1,21 @@
 echo "Welcome to Employee Wage Computation Problem"
 isPresent=1
-randomcheck=$(( RANDOM%2 ))
+randomcheck=$(( 1+$RANDOM%2 ))
 wageperhour=20
 fulldayhour=8
 parttimehour=4
 
-if [ $isPresent -eq $randomcheck ]
-then
-	echo "Employee is Present"
-else
-	echo "Employee is not Present"
-fi
+case $randomcheck in
 
-dailywage=$(($wageperhour*$fulldayhour*$randomcheck))
+	1)
+	     echo "Employee is Present"
+	     dailywage=$(($wageperhour*$fulldayhour*$randomcheck))
+	     parttimewage=$(($wageperhour*$parttimehour*$randomcheck))
+	;;
+	2)
+
+		echo "Employee is not Present"
+esac
+
 echo "Daily Employee Wage : $dailywage"
-parttimewage=$(($wageperhour*$parttimehour*$randomcheck))
-echo "Part time wage : " $parttimewage
+echo "Part time wage :  $parttimewage"
