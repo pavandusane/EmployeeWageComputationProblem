@@ -48,12 +48,21 @@ then
 	;;
 esac
 	else
-		exit
+		break
     fi
 	else
-		exit
+		break
     fi
 
 done
+
+function getworkhours(){
+	echo $totalhours
+}
+
+workhours=(`getworkhours`)
+
+echo "Total Work Hours : $workhours"
+
 echo "Monthly Fulltime wage : $monthlyfulltimewage "
 echo "Monthly Parttime wage : $monthlyparttimewage "
