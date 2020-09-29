@@ -32,15 +32,17 @@ then
 	         then
 	         dailywage=$(($wageperhour*$fulldayhour*$randomcheck))
 		 arr[$x]=$dailywage
-		  let x++
-	         monthlyfulltimewage=$(( $monthlyfulltimewage + $dailywage ))
-	         let totalhours+=8
-	      else
+	         arr1[$x]=$monthlyfulltimewage
+		 monthlyfulltimewage=$(( $monthlyfulltimewage + $dailywage ))
+		 let totalhours+=8
+		 let x++
+         	 else
                  parttimewage=$(($wageperhour*$parttimehour*$randomcheck))
 		 arr[$x]=$parttimewage
-		  let x++
 		 monthlyparttimewage=$(( $monthlyparttimewage + $parttimewage ))
+		 arr1[$x]=$monthlyparttimewage
 	         let totalhours+=4
+		 let x++
 	      fi
 	          let totaldays++
 	;;
@@ -71,3 +73,7 @@ echo "Hours : ${arr[@]}"
 echo "Monthly Fulltime wage : $monthlyfulltimewage "
 echo "Monthly Parttime wage : $monthlyparttimewage "
 
+for (( i=1;i<${#arr[@]};i++ ))
+do
+echo "Day : $i Daily Wage : ${arr[$i]} Total Monthly Wage : ${arr1[$i]}"
+done|sort
