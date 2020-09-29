@@ -4,6 +4,7 @@ randomcheck=$(( 1+$RANDOM%2 ))
 wageperhour=20
 fulldayhour=8
 parttimehour=4
+totalday=20
 
 case $randomcheck in
 
@@ -19,3 +20,5 @@ esac
 
 echo "Daily Employee Wage : $dailywage"
 echo "Part time wage :  $parttimewage"
+monthlywage=$(($dailywage*$totalday))
+echo "Monthly Wage : $monthlywage"
